@@ -1,0 +1,35 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  numExecutors: 5
+  scmCheckoutRetryCount: 2
+  mode: NORMAL
+
+  securityRealm:
+    local:
+    # https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos/embedded-userdatabase
+      allowsSignup: "false"
+      users:
+        - id: "admin"
+          password: "secure"
+          name: "Local Admin"
+          properties:
+            - mailer:
+                emailAddress: "admin@jenkins.local"
+  
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  
+  remotingSecurity:
+    enabled: true
+
+tool:
+  git:
+    installations:
+      - name: git
+        home: /usr/local/bin/git
+
+unclassified:
+  location:
+    adminAddress: "admin@jenkins.local"
+    url: "http://127.0.0.1:8080/"
